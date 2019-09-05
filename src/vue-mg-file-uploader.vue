@@ -6,7 +6,6 @@
                 <file-upload
                     class="btn btn-primary"
                     :post-action="postAction"
-                    :custom-action="customAction"
                     :extensions="extensions"
                     :accept="accept"
                     :multiple="true"
