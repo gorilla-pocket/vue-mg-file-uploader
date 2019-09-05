@@ -130,7 +130,7 @@ export default {
             }
         },
         filter_local_updated_files: function () {
-            return this.local_updated_files.filter((elem) => !elem.visibled)
+            return this.local_updated_files.filter((elem) => !elem.not_visibled)
         }
     },
     methods: {
