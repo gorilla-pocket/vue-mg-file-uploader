@@ -29,8 +29,8 @@
                 </template>
                 <span class="text-muted ml-2">(サイズの上限: {{file_size | formatSizeLg}})</span>
             </div>
-            <ul v-if="files.length||local_updated_files.length">
-                <li v-for="file in local_updated_files" :key="file.id">
+            <ul v-if="files.length||filter_local_updated_files.length">
+                <li v-for="file in filter_local_updated_files" :key="file.id">
                     <a href="" @click.prevent="onDownload(file)">
                         {{file.name}}
                     </a>
@@ -95,7 +95,7 @@ export default {
     data: function() {
         return {
             files: [],
-            local_files: [],
+            // local_files: [],
             local_updated_files: [],
         }
     },
@@ -128,6 +128,9 @@ export default {
                         return 'エラーが発生しました。'
                 }
             }
+        },
+        filter_local_updated_files: function () {
+            return this.local_updated_files.filter((elem) => !elem.visibled)
         }
     },
     methods: {
@@ -137,9 +140,10 @@ export default {
                 if (newFile.xhr) {
                     // console.log('status', newFile.xhr.status)
                     // console.log('file', newFile)
-                    this.local_files.push({
+                    this.local_updated_files.push({
                         id: newFile.response.file.id,
                         file_id: newFile.id,
+                        not_visibled: true,
                     })
                 }
             }
@@ -151,14 +155,14 @@ export default {
                 //   url: '/upload/delete?id=' + oldFile.response.id,
                 // })
                 }
-                const file = this.local_files.findIndex((elem) => elem.file_id === oldFile.id)
+                const file = this.local_updated_files.findIndex((elem) => elem.file_id === oldFile.id)
                 if (file && file.id) {
                     const _this = this
                     axios.delete('/api/attachments/'+file.id)
                     .then(function () {
-                        const index = _this.local_files.findIndex((elem) => elem.file_id === oldFile.id)
+                        const index = _this.local_updated_files.findIndex((elem) => elem.file_id === oldFile.id)
                         if (index !== -1) {
-                            _this.local_files.splice(index, 1)
+                            _this.local_updated_files.splice(index, 1)
                         }
                     })
                     // .catch(function (resp) {
