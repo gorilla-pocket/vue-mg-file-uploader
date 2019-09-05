@@ -145,6 +145,7 @@ export default {
                         file_id: newFile.id,
                         not_visibled: true,
                     })
+                    this.$emit('update:uploadedFiles', this.local_updated_files)
                 }
             }
             if (!newFile && oldFile) {
@@ -163,6 +164,7 @@ export default {
                         const index = _this.local_updated_files.findIndex((elem) => elem.file_id === oldFile.id)
                         if (index !== -1) {
                             _this.local_updated_files.splice(index, 1)
+                            _this.$emit('update:uploadedFiles', _this.local_updated_files)
                         }
                     })
                     // .catch(function (resp) {
