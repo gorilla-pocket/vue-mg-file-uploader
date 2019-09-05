@@ -125,7 +125,7 @@ export default {
                     case 'size':
                         return 'ファイルサイズが大きすぎます。'
                     default:
-                        return 'エラーが発生しました。'
+                        return 'エラーが発生しました。('+error+')'
                 }
             }
         },
