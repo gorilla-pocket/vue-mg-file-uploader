@@ -1,27 +1,3 @@
-# vue-mg-file-uploader
-vue-mg-file-uploader
-
-![npm](https://img.shields.io/npm/v/vue-mg-file-uploader)
-![npm](https://img.shields.io/npm/dm/vue-mg-file-uploader)
-
-## Installation
-
-```
-npm i vue-mg-file-uploader
-```
-
-## Usage
-
-app.js
-
-```javascript
-import FileUploader from 'vue-mg-file-uploader'
-Vue.component('FileUploader', FileUploader)
-```
-
-Example:
-
-```html
 <template>
   <section class="container mt-2">
     <file-uploader
@@ -79,8 +55,3 @@ export default {
 <style scoped>
 @import 'https://use.fontawesome.com/releases/v5.7.2/css/all.css';
 </style>
-```
-
-## License
-
-MIT
