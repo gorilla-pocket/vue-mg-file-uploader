@@ -100,7 +100,7 @@ export default {
         }
     },
     mounted: function () {
-        //
+        this.local_updated_files = this.uploadedFiles
     },
     filters: {
         formatSize: function (val) {
