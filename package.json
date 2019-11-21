@@ -1,6 +1,6 @@
 {
   "name": "vue-mg-file-uploader",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "",
   "license": "MIT",
   "main": "dist/vue-mg-file-uploader.ssr.js",
