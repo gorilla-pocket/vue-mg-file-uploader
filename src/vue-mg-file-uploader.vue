@@ -35,13 +35,16 @@
                         {{file.name}}
                     </a>
                     <span class="ml-2">({{file.size | formatSize}})</span>
-                    <button type="button" class="ml-2" style="display:inline-block;" v-if="!readOnly" @click.prevent="removeUploadedFile(file)">
+                    <button type="button" class="remove-upload remove-uploaded btn btn-sm btn-outline-danger ml-2" style="display:inline-block;" v-if="!readOnly" @click.prevent="removeUploadedFile(file)">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </li>
                 <li v-for="file in files" :key="file.id">
                     <!-- <span><img class="thumb" v-bind:src="file.blob"></span> -->
-                    <span>{{file.name}}</span>
+                    <!-- <span>{{file.name}}</span> -->
+                    <a href="" @click.prevent="onDownload(file)">
+                        {{file.name}}
+                    </a>
                     <span class="ml-2">({{file.size | formatSize}})</span> -
                     <span class="text-danger" v-if="file.error">{{error_message(file.error)}}</span>
                     <span class="text-success" v-else-if="file.success">success</span>
@@ -50,7 +53,7 @@
                     <!-- <div class="progress" style="display:inline-block;width:10rem;">
                         <div :class="{'progress-bar': true, 'progress-bar-striped': true, 'bg-danger': file.error, 'progress-bar-animated': file.active}" role="progressbar" :style="{width: file.progress + '%'}">{{file.progress}}%</div>
                     </div> -->
-                    <button type="button" class="remove-upload remove-uploaded" style="display:inline-block;" @click.prevent="remove(file)">
+                    <button type="button" class="remove-upload remove-uploaded btn btn-sm btn-outline-danger ml-2" style="display:inline-block;" v-if="!file.error" @click.prevent="remove(file)">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </li>
@@ -142,6 +145,8 @@ export default {
                     // console.log('file', newFile)
                     this.local_updated_files.push({
                         id: newFile.response.file.id,
+                        name: newFile.name,
+                        size: newFile.size,
                         file_id: newFile.id,
                         not_visibled: true,
                     })
@@ -256,27 +261,8 @@ export default {
   text-align: center;
   display: inline-block;
 }
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .5rem .75rem;
-  font-size: 1rem;
-  line-height: 1.25;
-  border-radius: .25rem;
-  transition: all .15s ease-in-out;
-}
-.btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+.remove-upload {
+    border: none;
 }
 ul {
   padding: .5rem 1.5rem;
