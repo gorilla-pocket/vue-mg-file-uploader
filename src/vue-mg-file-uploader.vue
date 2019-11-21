@@ -41,10 +41,7 @@
                 </li>
                 <li v-for="file in files" :key="file.id">
                     <!-- <span><img class="thumb" v-bind:src="file.blob"></span> -->
-                    <!-- <span>{{file.name}}</span> -->
-                    <a href="" @click.prevent="onDownload(file)">
-                        {{file.name}}
-                    </a>
+                    <span>{{file.name}}</span>
                     <span class="ml-2">({{file.size | formatSize}})</span> -
                     <span class="text-danger" v-if="file.error">{{error_message(file.error)}}</span>
                     <span class="text-success" v-else-if="file.success">success</span>
@@ -143,13 +140,28 @@ export default {
                 if (newFile.xhr) {
                     // console.log('status', newFile.xhr.status)
                     // console.log('file', newFile)
-                    this.local_updated_files.push({
-                        id: newFile.response.file.id,
+                    // this.local_updated_files.push({
+                    //     // id: newFile.response.file.id,
+                    //     name: newFile.name,
+                    //     size: newFile.size,
+                    //     file_id: newFile.id,
+                    //     not_visibled: false,
+                    // })
+                    const f = {
+                        // id: newFile.response.file.id,
                         name: newFile.name,
                         size: newFile.size,
                         file_id: newFile.id,
                         not_visibled: true,
-                    })
+                    }
+                    if (!newFile.error) {
+                        const index = this.files.findIndex( (file) => file.id == newFile.id)
+                        if (index >= 0) {
+                            this.files.splice(index, 1)
+                            f.not_visibled = false
+                        }
+                    }
+                    this.local_updated_files.push(f)
                     this.$emit('update:uploadedFiles', this.local_updated_files)
                 }
             }
