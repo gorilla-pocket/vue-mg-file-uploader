@@ -136,7 +136,7 @@ export default {
     methods: {
         inputFile: function (newFile, oldFile) {
             if (newFile && oldFile && !newFile.active && oldFile.active) {
-                // console.log('response', newFile.response)
+                console.log('response', newFile.response)
                 if (newFile.xhr) {
                     // console.log('status', newFile.xhr.status)
                     // console.log('file', newFile)
