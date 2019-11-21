@@ -148,7 +148,7 @@ export default {
                     //     not_visibled: false,
                     // })
                     const f = {
-                        // id: newFile.response.file.id,
+                        id: newFile.response.file.id,
                         name: newFile.name,
                         size: newFile.size,
                         file_id: newFile.id,
