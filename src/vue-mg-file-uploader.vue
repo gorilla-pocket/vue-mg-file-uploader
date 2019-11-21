@@ -45,11 +45,11 @@
                     <span class="ml-2">({{file.size | formatSize}})</span> -
                     <span class="text-danger" v-if="file.error">{{error_message(file.error)}}</span>
                     <span class="text-success" v-else-if="file.success">success</span>
-                    <span class="text-info" v-else-if="file.active">active</span>
+                    <!-- <span class="text-info" v-else-if="file.active">active</span> -->
                     <!-- <span v-else></span><i class="fas fa-times"></i></span> -->
-                    <!-- <div class="progress" style="display:inline-block;width:10rem;">
+                    <div class="progress ml-2" style="display:inline-block;width:10rem;" v-if="file.active || file.progress !== '0.00'">
                         <div :class="{'progress-bar': true, 'progress-bar-striped': true, 'bg-danger': file.error, 'progress-bar-animated': file.active}" role="progressbar" :style="{width: file.progress + '%'}">{{file.progress}}%</div>
-                    </div> -->
+                    </div>
                     <button type="button" class="remove-upload remove-uploaded btn btn-sm btn-outline-danger ml-2" style="display:inline-block;" v-if="!file.error" @click.prevent="remove(file)">
                         <i class="fas fa-trash-alt"></i>
                     </button>
@@ -136,7 +136,7 @@ export default {
     methods: {
         inputFile: function (newFile, oldFile) {
             if (newFile && oldFile && !newFile.active && oldFile.active) {
-                console.log('response', newFile.response)
+                // console.log('response', newFile.response)
                 if (newFile.xhr) {
                     // console.log('status', newFile.xhr.status)
                     // console.log('file', newFile)
