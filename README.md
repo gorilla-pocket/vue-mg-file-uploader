@@ -4,6 +4,10 @@ vue-mg-file-uploader
 ![npm](https://img.shields.io/npm/v/vue-mg-file-uploader)
 ![npm](https://img.shields.io/npm/dm/vue-mg-file-uploader)
 
+## Example
+
+![image](https://user-images.githubusercontent.com/52206492/93536083-401e9700-f983-11ea-8195-bbceabdb92a6.png)
+
 ## Installation
 
 ```
