@@ -34,6 +34,7 @@
                     <a href="" @click.prevent="onDownload(file)">
                         {{file.name}}
                     </a>
+                    <span class="ml-2" v-if="file.description"> - {{file.description}}</span>
                     <span class="ml-2">({{file.size | formatSize}})</span>
                     <button type="button" class="remove-upload remove-uploaded btn btn-sm btn-outline-danger ml-2" style="display:inline-block;" v-if="!readOnly" @click.prevent="removeUploadedFile(file)">
                         <i class="fas fa-trash-alt"></i>
@@ -49,6 +50,9 @@
                     <!-- <span v-else></span><i class="fas fa-times"></i></span> -->
                     <div class="progress ml-2" style="display:inline-block;width:10rem;" v-if="file.active || file.progress !== '0.00'">
                         <div :class="{'progress-bar': true, 'progress-bar-striped': true, 'bg-danger': file.error, 'progress-bar-animated': file.active}" role="progressbar" :style="{width: file.progress + '%'}">{{file.progress}}%</div>
+                    </div>
+                    <div v-if="use_description">
+                        <input type="text" class="form-control" style="width:20rem;" placeholder="任意のコメント" v-model="file.description">
                     </div>
                     <button type="button" class="remove-upload remove-uploaded btn btn-sm btn-outline-danger ml-2" style="display:inline-block;" v-if="!file.error" @click.prevent="remove(file)">
                         <i class="fas fa-trash-alt"></i>
@@ -90,7 +94,11 @@ export default {
         readOnly: {
             type: Boolean,
             default:  false,
-        }
+        },
+        use_description: {
+            type: Boolean,
+            default:  false,
+        },
     },
     data: function() {
         return {
