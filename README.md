@@ -35,6 +35,7 @@ Example:
         :token="token"
         postAction="/api/attachments"
         :uploaded-files.sync="uploadedFiles"
+        use_description
     >
       <template v-slot:select>
         添付ファイル
@@ -63,8 +64,8 @@ export default {
   },
   mounted: function () {
     this.uploadedFiles = [
-      { id: 1, name: 'file01.txt', size: 2000},
-      { id: 2, name: 'file02.txt', size: 12000},
+      { id: 1, name: 'file01.txt', size: 2000, description: 'ああああああ'},
+      { id: 2, name: 'file02bbbbbbbbbbbbbbbbbbbbbbbbb.txt', size: 12000},
     ]
   },
   methods: {
